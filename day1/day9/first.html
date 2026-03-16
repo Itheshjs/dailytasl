@@ -32,12 +32,12 @@
         
         // n.includes(30);
         // console.log(n.includes(32));
-        // console.log(n.indexOf(50))
+        // console.log(n.indexOf(50)) //indexof is used  to find the position of the the sting or array 
 
         // let l=["red","green","yellow","blue","grey"]
 
 
-        // let myJoin = l.join(",")
+        // let myJoin = l.join(",") ,"," used to add the comma btw the the elements and "|" or etc
 
         // console.log(myJoin)
 
@@ -57,18 +57,30 @@
     //2 remove duplicates from an array
 
 
-    let l=[1,2,3,9,7,5,2,3,88,99,77,88,55]
+    // let l=[1,2,3,9,7,5,2,3,88,99,77,88,55]
     
-    let finalArray=[]
+    // let finalArray=[]
+
+    // for(let v of l){
+    //     if(!finalArray.includes(v)){ //if element not present in the array it includes the value i alredy presunt it doent inclide
+    //         finalArray.push(v)
+    //     }  
+    // }
+
+    // console.log(finalArray)
+    // console.log(d);
+
+    let l=[1,2,3,21,33,43,44,52,55,57,55,3,2,43]
+
+    let finalResult=[]
 
     for(let v of l){
-        if(!finalArray.includes(v)){
-            finalArray.push(v)
-        }  
+        if(!finalResult.includes(v)){
+            finalResult.push(v)
+        }
     }
 
-    console.log(finalArray)
-    console.log(d);
+    console.log(finalResult)
 
     </script>
 </body>
