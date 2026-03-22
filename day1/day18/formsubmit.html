@@ -16,7 +16,7 @@
         .formSection{
             display: grid;
             grid-template-columns: 20% auto;
-            width: 500px;
+            width: 300px;
             height: 500px;
             gap: 30px;
             margin-left: 20px;
@@ -44,6 +44,65 @@
             height: 30px;
         }
 
+        table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+    margin: 20px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Header */
+thead {
+    background-color: #4CAF50;
+    color: white;
+}
+
+thead th {
+    padding: 12px;
+    text-align: left;
+    font-size: 16px;
+}
+
+/* Body rows */
+tbody tr {
+    background-color: #f9f9f9;
+    transition: background 0.3s;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f1f1f1;
+}
+
+tbody tr:hover {
+    background-color: #e0f7e9;
+}
+
+/* Cells */
+tbody th {
+    padding: 12px;
+    text-align: left;
+    font-weight: normal;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Button */
+button {
+    padding: 6px 12px;
+    background-color: #ff4d4d;
+    border: none;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: #cc0000;
+}
+
     </style>
 </head>
 <body>
@@ -69,13 +128,30 @@
             <button>Save</button>
         </form>
         <div>
-            <table></table>
+           
         </div>
     </section>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Sr.No</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+
+                </tbody>
+            </table>
 </body>
 
 <script>
     let formElement=document.querySelector(".formSection form")
+
+    let userData=[]
     console.log(formElement);
 
     formElement.addEventListener("submit",(event)=>{
@@ -86,10 +162,58 @@
         let userPhone=event.target.userPhone.value;
         console.log(userName,userEmail,userPhone)
 
+        let userobject={
+            userName,
+            userEmail,
+            userPhone
+        }
+
+        let cheakMyEmail=userData.find((item)=>item.userEmail==userEmail)
+
+        if(cheakMyEmail){
+            alert("email alredy exist")
+        }
+        else{
+            userData.push(userobject)
+            storeDataintable()
+        }
+        console.log(userData)
+
+        userData.push(userobject)
+
         event.target.reset()
 
 
         event.preventDefault() // this prevent the page refresh //aslo if want in a page right click want to disable then we use .first target the body then contextmenu then preventDefoult
+    })
+
+
+    let tableBody=document.querySelector("#tableBody")
+    let storeDataintable=()=>{
+        let tableRow=''
+        userData.forEach((items,index)=>{
+            console.log(items);
+            tableRow+=`<tr>
+                        <td>${index+1}</td>
+                        <td>${items.userName}</td>
+                        <td>${items.userEmail}</td>
+                        <td>${items.userPhone}</td>
+                        <td>
+                            <button data-id="${index}">Delete</button>
+                        </td>
+                    </tr>`
+        })
+        tableBody.innerHTML=tableRow
+    }
+
+    tableBody.addEventListener("click",(e)=>{
+        if(e.target.tagName=="BUTTON"){
+            if(confirm("are you sure want to delete?")){
+                let delID = e.target.getAttribute("data-id")
+                userData.splice(delID,1)
+                storeDataintable()
+            }
+        }
     })
 </script>
 </html>
