@@ -94,18 +94,22 @@
 // console.log(myPromise)
 
 
-let doHomeWork=(subject)=>{
-    return new Promise((resolve,reject)=>{
-        setTimeout(()=>{
-            resolve(`${subject} home work done`)
-        },1000)
-    })
-}
+// let doHomeWork=(subject)=>{
+//     return new Promise((resolve,reject)=>{
+//         setTimeout(()=>{
+//             resolve(`${subject} home work done`)
+//         },1000)
+//     })
+// }
 
-let finishHomework=async ()=>{
-    let mytask1=await doHomeWork("math")
-    let mytask2=await doHomeWork("English")
-    console.log(mytask1)
-    console.log(mytask2)
-}
-finishHomework()
+// let finishHomework=async ()=>{
+//     let mytask1=await doHomeWork("math")
+//     let mytask2=await doHomeWork("English")
+//     console.log(mytask1)
+//     console.log(mytask2)
+// }
+// finishHomework()
+
+// //to handling the Promise data we can use async and await
+
+
